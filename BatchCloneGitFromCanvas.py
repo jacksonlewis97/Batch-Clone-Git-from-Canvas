@@ -14,8 +14,6 @@ folder = filedialog.askdirectory()
 submitList = os.listdir(folder)
 
 #Retrieve the github repo link from each html file
-repoList = []
-
 for file in submitList:
     with open(folder + "/" + file, 'r') as File:
         html_content = File.read() #open the file so that beautifulsoup can read it
@@ -28,7 +26,7 @@ for file in submitList:
     #Change the active directory to the folder and assign the students name to their repo folder
     os.chdir(folder)
     folder_name = file.split("_", 1)[0].upper()
-    
+
     #Attempt cloning the repo
     try:
         subprocess.run(['git', 'clone', link, folder_name], check=True)
